@@ -1,18 +1,18 @@
-from .models import File, Folder
+from .models import File, Folder, User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import FormParser, MultiPartParser
-from .serializers import FileSerializer, FolderSerializer
+from .serializers import FileSerializer, FolderSerializer, UserSerializer
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 # Create your views here.
 class UserDetail(APIView):
   def get(self, request, *args, **kwargs):
-    return Response({test: 3})
-
-
-
+    user_id = kwargs["user_id"]
+    user = User.objects.get(id = user_id)
+    ser = UserSerializer(user)
+    return Response(ser.data)
 
 class FolderDetail(APIView):
   authentication_classes = []
