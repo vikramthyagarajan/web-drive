@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { getCurrentFolder } from '../../state/folder/folder.selectors';
+import { FolderCard, FileCard } from './Cards';
 import './MainView.scss';
 
 export default function MainView() {
@@ -20,15 +21,15 @@ export default function MainView() {
         <div className="list folderList">
           <div className="listScroll folderList">
             {folders.map((fold) => {
-              return (<div key={fold.id} className="card folderCard">{fold.name}</div>)
+              return <FolderCard folder={fold} />
             })}
           </div>
         </div>
         {/* <div className="label">Files</div> */}
         <div className="list fileList">
           <div className="listScroll fileList">
-            {folders.map((file) => {
-              return <div key={file.id} className="card fileCard">{file.name}</div>
+            {files.map((file) => {
+              return <FileCard file={file} />
             })}
           </div>
         </div>

@@ -44,12 +44,33 @@
         .card {
           width: 150px;
           height: 150px;
-          background: $grayLight;
           justify-content: center;
           align-items: center;
           text-align: center;
           border-radius: 10px;
-          box-shadow: 0 2px 2px #96a0a7;
+          // background: $grayLight;
+          // box-shadow: 0 2px 2px #96a0a7;
+
+          .icon {
+            font-size: 10rem;
+            color: $white;
+            height: 120px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .cardFooter {
+            color: $grayDark;
+            font-weight: bold;
+          }
+
+          &.fileCard {
+            .icon {
+              font-size: 8rem;
+            }
+          }
         }
       }
 
