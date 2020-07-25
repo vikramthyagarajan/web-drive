@@ -6,6 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import { getCurrentFolder } from '../../state/folder/folder.selectors';
 import FolderContents from './FolderContents';
+import AddForm from './AddForm';
 import './MainView.scss';
 
 export default function MainView() {
@@ -30,7 +31,8 @@ export default function MainView() {
         <div className="divider"></div>
       </div>
       <div className="mainContent">
-        <FolderContents folder={folder} />
+        {/* <FolderContents folder={folder} /> */}
+        <AddForm folder={folder} />
       </div>
     </div>
   )

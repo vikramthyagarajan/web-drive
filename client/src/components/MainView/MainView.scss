@@ -90,5 +90,41 @@
       }
 
     }
+
+
+    .addForm {
+      .formCard {
+        width: 350px;
+        height: 300px;
+        background: $grayLight;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 2px #96a0a7;
+
+        form {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+
+        .input {
+          margin-bottom: 20px;
+          color: $primary;
+        }
+
+        .upload {
+          width: fit-content;
+        }
+
+        .submit {
+          background: $primary;
+          color: $white;
+          width: min-content;
+          align-self: flex-end;
+          justify-self: flex-end;
+          margin-top: auto;
+        }
+      }
+    }
   }
 }
