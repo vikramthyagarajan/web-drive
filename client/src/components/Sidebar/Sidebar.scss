@@ -10,6 +10,7 @@
     .appName {
       font-size: 35px;
       color: $white;
+      padding-top: 10px;
     }
 
     .branding {
@@ -17,7 +18,7 @@
     }
 
     .divider {
-      margin: 5px 0;
+      margin: 20px 0;
       border: 1px solid $grayLightest;
       border-radius: 5px;
       width: 50px;
@@ -25,7 +26,7 @@
   }
 
   .folderStructure {
-    margin-top: 10px;
+    margin-top: 35px;
     .list {
       .listItem {
         color: $white;
