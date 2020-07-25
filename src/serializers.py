@@ -22,4 +22,4 @@ class FolderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Folder
-        fields = ['id', 'name', 'files', 'folders']
+        fields = ['id', 'name', 'files', 'folders', 'parents']

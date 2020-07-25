@@ -2,11 +2,22 @@ from .models import File, Folder, User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import FormParser, MultiPartParser
-from .serializers import FileSerializer, FolderSerializer, UserSerializer
+from .serializers import FileSerializer, FolderSerializer, UserSerializer, SubFolderSerializer
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 # Create your views here.
+
+def all_parents(folder):
+  list = []
+  parent = folder.parents
+  print(parent.count())
+  while parent.count() != 0:
+    temp = parent.all()[0]
+    list.append(temp)
+    parent = temp.parents
+  return list
+
 class UserDetail(APIView):
   def get(self, request, *args, **kwargs):
     user_id = kwargs["user_id"]
@@ -20,8 +31,14 @@ class FolderDetail(APIView):
   def get(self, request, *args, **kwargs):
     folder_id = kwargs["folder_id"]
     folder = Folder.objects.get(id = folder_id)
+    list = all_parents(folder)
+    print(list)
     serialized = FolderSerializer(folder)
-    return Response(serialized.data)
+    parents = SubFolderSerializer(list, many=True)
+    merged = serialized.data
+    merged["tree"] = parents.data
+    print(test)
+    return Response(merged)
 
   def delete(self, request, *args, **kwargs):
     folder_id = kwargs["folder_id"]

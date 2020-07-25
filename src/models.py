@@ -28,5 +28,8 @@ class Folder(models.Model):
   author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
   # parents = models.OneToOneField('self', related_name="folders", on_delete=models.CASCADE)
 
+  def all_parents(self):
+    return self.parents
+
   def __str__(self):
     return self.name
