@@ -14,12 +14,12 @@ export default function Sidebar() {
           <div className="listItem">Home</div>
         </div>
       </div>
-      <div className="footer">
+      {/* <div className="footer">
         <div className="actions">
           <button className="addButton">+</button>
           <button className="searchButton">?</button>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

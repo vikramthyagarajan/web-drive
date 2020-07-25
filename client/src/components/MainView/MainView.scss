@@ -8,18 +8,30 @@
   overflow: auto;
 
   .header {
-    padding: 10px 0;
+    padding: 20px 0;
 
-    .folderName {
+    .folderHeader {
       font-size: 35px;
-      color: $black;
+      display: grid;
+      grid-template-columns: auto 60px 60px;
+
+      .folderName {
+        color: $black;
+      }
+
+      .action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // background-color: $primary;
+        color: $white;
+      }
     }
 
     .divider {
-      margin: 5px 0;
+      margin: 15px 0;
       border: 1px solid $gray;
-      border-radius: 5px;
-      width: 50px;
+      border-radius: 10px;
     }
   }
 
