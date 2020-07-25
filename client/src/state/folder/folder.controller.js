@@ -1,4 +1,5 @@
 import Request from '../../config/request';
+import History from '../../config/history';
 import { FolderCreators } from './folder.actions';
 import { callGetUser } from '../user/user.controller';
 
@@ -15,8 +16,14 @@ export const callGetUserAndFolder = () => {
   return dispatch => {
     return dispatch(callGetUser())
       .then((action) => {
-        console.log('user action is', action);
-        if (action.id) {
+        let path = History.location.pathname || '';
+        let split = path.split("/");
+        // if link starts with folders then load that as parent
+        if (split[1] === 'folders') {
+          let id = split[2];
+          return dispatch(callGetFolder(id))
+        }
+        else if (action.id) {
           let folderId = action.home;
           return dispatch(callGetFolder(folderId))
         }

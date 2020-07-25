@@ -1,7 +1,10 @@
 import React from 'react';
-
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import FolderIcon from '@material-ui/icons/Folder';
 import FileIcon from '@material-ui/icons/Description';
+
+import { callGetFolder } from '../../state/folder/folder.controller';
 
 const Card = ({type, item, children}) => {
   return (
@@ -19,11 +22,18 @@ const Card = ({type, item, children}) => {
 }
 
 export const FolderCard = ({folder}) => {
+  let dispatch = useDispatch();
+  const handleCardClick = () => {
+    dispatch(callGetFolder(folder.id));
+  }
+
   return (
     <Card item={folder} type="folderCard">
-      <div className="icon">
-        <FolderIcon style={{fontSize: 'inherit', color: 'inherit'}} />
-      </div>
+      <Link to={"/folders/" + folder.id} onClick={handleCardClick}>
+        <div className="icon">
+          <FolderIcon style={{fontSize: 'inherit', color: 'inherit'}} />
+        </div>
+      </Link>
     </Card>
   )
 }
