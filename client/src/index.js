@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { Router } from 'react-router-dom';
+import History from './config/history';
 import Store from './config/store';
 import Home from './pages/Home';
 import './styles/global.scss';
@@ -9,7 +11,9 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={Store}>
-      <Home />
+      <Router history={History}>
+        <Home />
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
