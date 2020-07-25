@@ -4,6 +4,7 @@ import { FolderActions } from './folder.actions';
 
 const defaultState = {
   folderId: null,
+  folderView: 'list',
   folderData: {
   }
 }
@@ -28,6 +29,11 @@ export default function FolderReducer(state = defaultState, action) {
 
       newState = cloneDeep(state);
       newState.folderData.files.push(action.file);
+      return newState;
+    
+    case FolderActions.SET_FOLDER_VIEW:
+      newState = cloneDeep(state);
+      newState.folderView = action.folderView;
       return newState;
 
     default:

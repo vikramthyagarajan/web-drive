@@ -24,7 +24,12 @@
         align-items: center;
         justify-content: center;
         // background-color: $primary;
+        display: none;
         color: $white;
+
+        &.show {
+          display: flex;
+        }
       }
     }
 

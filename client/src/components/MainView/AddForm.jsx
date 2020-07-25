@@ -10,7 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { callCreateFolder, callCreateFile } from '../../state/folder/folder.controller';
 
 export default function AddForm({folder}) {
-  let [type, setType] = useState("file");
+  let [type, setType] = useState("folder");
   let [name, setName] = useState("");
   let [file, setFile] = useState()
   let dispatch = useDispatch();
