@@ -22,9 +22,9 @@ class File(models.Model):
 
 class Folder(models.Model):
   name = models.CharField(max_length=100)
-  folders = models.ManyToManyField('self', related_name="parents")
+  folders = models.ManyToManyField('self', related_name="parents", symmetrical=False)
   author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-  # folders = models.ManyToManyField('self', related_name="folders")
+  # parents = models.OneToOneField('self', related_name="folders", on_delete=models.CASCADE)
 
   def __str__(self):
     return self.name
