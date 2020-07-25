@@ -1,0 +1,36 @@
+@import '../../styles/palette.scss';
+
+.sidebar {
+  width: 100%;
+  height: 100%;
+  background: $grayDark;
+  padding: 10px 15px;
+
+  .header {
+    .appName {
+      font-size: 35px;
+      color: $white;
+    }
+
+    .branding {
+      color: $primaryLight;
+    }
+
+    .divider {
+      margin: 5px 0;
+      border: 1px solid $grayLightest;
+      border-radius: 5px;
+      width: 50px;
+    }
+  }
+
+  .folderStructure {
+    margin-top: 10px;
+    .list {
+      .listItem {
+        color: $white;
+        font-size: 20px;
+      }
+    }
+  }
+}

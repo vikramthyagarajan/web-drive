@@ -1,0 +1,58 @@
+@import '../../styles/palette.scss';
+
+.mainView {
+  height: 100%;
+  width: 100%;
+  background: $grayLightest;
+  padding: 0 45px;
+  overflow: auto;
+
+  .header {
+    padding: 10px 0;
+
+    .folderName {
+      font-size: 35px;
+      color: $black;
+    }
+
+    .divider {
+      margin: 5px 0;
+      border: 1px solid $gray;
+      border-radius: 5px;
+      width: 50px;
+    }
+  }
+
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+
+    .label {
+      font-size: 30px;
+      color: $grayDark;
+    }
+
+    .list {
+      overflow: hidden;
+
+      .listScroll {
+        display: flex;
+        flex-direction: row;
+        overflow: auto;
+        padding: 15px 0;
+
+        .card {
+          width: 150px;
+          height: 150px;
+          background: $grayLight;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          border-radius: 10px;
+          box-shadow: 0 2px 2px #96a0a7;
+        }
+      }
+
+    }
+  }
+}

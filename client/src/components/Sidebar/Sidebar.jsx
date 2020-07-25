@@ -1,10 +1,12 @@
 import React from "react";
 
+import './Sidebar.scss';
+
 export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="header">
-        <div className="appName">Web Drive</div>
+        <div className="appName">Web <span className="branding">Drive</span></div>
         <div className="divider"></div>
       </div>
       <div className="folderStructure">
