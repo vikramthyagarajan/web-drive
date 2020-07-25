@@ -57,8 +57,13 @@ class CreateFile(APIView):
   def post(self, request, *args, **kwargs):
     folder_id = kwargs["folder_id"]
     name = request.data["name"]
+    doc = request.FILES.get('file')
+    ext = doc.name.split(".")[1]
+    print(doc.name)
+    print(doc.size)
+    print(link)
     parent = Folder.objects.get(id = folder_id)
-    file = File(name=name, size=0, extension="test")
+    file = File(name=name, document=doc, size=doc.size, extension=ext, doc_name=doc.name)
     file.parent = parent
     file.save()
     parent.files.add(file)
