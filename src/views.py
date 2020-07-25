@@ -50,7 +50,19 @@ class CreateFolder(APIView):
 
 
 class CreateFile(APIView):
-  pass
+  parser_classes = [FormParser, MultiPartParser]
+  authentication_classes = []
+
+  def post(self, request, *args, **kwargs):
+    folder_id = kwargs["folder_id"]
+    name = request.data["name"]
+    parent = Folder.objects.get(id = folder_id)
+    file = File(name=name, size=0, extension="test")
+    file.parent = parent
+    file.save()
+    parent.files.add(file)
+    serialized = FileSerializer(file)
+    return Response(serialized.data)
 
 class MoveFolder(APIView):
   pass
