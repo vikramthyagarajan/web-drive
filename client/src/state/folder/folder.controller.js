@@ -22,5 +22,14 @@ export const callGetUserAndFolder = () => {
         }
       })
   }
+}
 
+export const callCreateFolder = (parentFolderId, name) => {
+  return dispatch => {
+    dispatch(FolderCreators.createFolder(parentFolderId, name));
+
+    return Request.postForm(`folders/${parentFolderId}/folders`, {name})
+      .then(data => FolderCreators.createFolderSuccess(parentFolderId, name, data))
+      .catch(e => FolderCreators.createFolderError(parentFolderId, name, e.toString()))
+  }
 }

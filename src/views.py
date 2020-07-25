@@ -39,7 +39,8 @@ class CreateFolder(APIView):
   @csrf_exempt
   def post(self, request, *args, **kwargs):
     folder_id = kwargs["folder_id"]
-    name = request.data["name"]
+    print(request.data)
+    name = request.data.get("name", "Untitled")
     parent = Folder.objects.get(id = folder_id)
     folder = Folder(name=name)
     folder.save()

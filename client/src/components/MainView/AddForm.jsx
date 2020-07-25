@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField'
 import Select from '@material-ui/core/Select'
 import Button from '@material-ui/core/Button'
@@ -6,13 +7,17 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import MenuItem from '@material-ui/core/MenuItem'
 
-export default function AddForm({}) {
+import { callCreateFolder } from '../../state/folder/folder.controller';
+
+export default function AddForm({folder}) {
   let [type, setType] = useState("folder");
   let [name, setName] = useState("");
   let [file, setFile] = useState()
+  let dispatch = useDispatch();
 
   const onSubmit = () => {
     console.log('reff', type, name);
+    dispatch(callCreateFolder(folder.id, name));
   }
   const handleChange = (fun, e) => {
     fun(e.target.value)
