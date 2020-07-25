@@ -7,17 +7,22 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import MenuItem from '@material-ui/core/MenuItem'
 
-import { callCreateFolder } from '../../state/folder/folder.controller';
+import { callCreateFolder, callCreateFile } from '../../state/folder/folder.controller';
 
 export default function AddForm({folder}) {
-  let [type, setType] = useState("folder");
+  let [type, setType] = useState("file");
   let [name, setName] = useState("");
   let [file, setFile] = useState()
   let dispatch = useDispatch();
 
   const onSubmit = () => {
     console.log('reff', type, name);
-    dispatch(callCreateFolder(folder.id, name));
+    if (type === "file") {
+      dispatch(callCreateFile(folder.id, name, file));
+    }
+    else {
+      dispatch(callCreateFolder(folder.id, name));
+    }
   }
   const handleChange = (fun, e) => {
     fun(e.target.value)

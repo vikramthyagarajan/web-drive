@@ -7,6 +7,10 @@ export const FolderActions = {
   CREATE_FOLDER: 'CREATE_FOLDER',
   CREATE_FOLDER_SUCCESS: 'CREATE_FOLDER_SUCCESS',
   CREATE_FOLDER_ERROR: 'CREATE_FOLDER_ERROR',
+
+  CREATE_FILE: 'CREATE_FILE',
+  CREATE_FILE_SUCCESS: 'CREATE_FILE_SUCCESS',
+  CREATE_FILE_ERROR: 'CREATE_FILE_ERROR',
 }
 
 export const FolderCreators = {
@@ -17,4 +21,8 @@ export const FolderCreators = {
   createFolder: (parentFolderId, name) => ({type: FolderActions.CREATE_FOLDER, parentFolderId, name}),
   createFolderSuccess: (parentFolderId, name, folder) => ({type: FolderActions.CREATE_FOLDER_SUCCESS, parentFolderId, name, folder}),
   createFolderError: (parentFolderId, name, error) => ({type: FolderActions.CREATE_FOLDER_ERROR, parentFolderId, name}),
+
+  createFile: (parentFolderId, name, file) => ({type: FolderActions.CREATE_FILE, parentFolderId, name, file}),
+  createFileSuccess: (parentFolderId, file) => ({type: FolderActions.CREATE_FILE_SUCCESS, parentFolderId, file}),
+  createFileError: (parentFolderId, error) => ({type: FolderActions.CREATE_FILE_ERROR, parentFolderId, error}),
 }

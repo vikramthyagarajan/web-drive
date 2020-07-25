@@ -9,6 +9,7 @@ const defaultState = {
 }
 
 export default function FolderReducer(state = defaultState, action) {
+  let newState;
   switch (action.type) {
     case FolderActions.GET_FOLDER_SUCCESS:
       return {...state, folderId: action.folderId, folderData: action.folder};
@@ -17,8 +18,16 @@ export default function FolderReducer(state = defaultState, action) {
       if(state.folderId !== action.parentFolderId)
         return state;
 
-      let newState = cloneDeep(state);
+      newState = cloneDeep(state);
       newState.folderData.folders.push(action.folder);
+      return newState;
+
+    case FolderActions.CREATE_FILE_SUCCESS:
+      if(state.folderId !== action.parentFolderId)
+        return state;
+
+      newState = cloneDeep(state);
+      newState.folderData.files.push(action.file);
       return newState;
 
     default:

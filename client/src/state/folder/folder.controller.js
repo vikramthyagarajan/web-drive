@@ -33,3 +33,13 @@ export const callCreateFolder = (parentFolderId, name) => {
       .catch(e => FolderCreators.createFolderError(parentFolderId, name, e.toString()))
   }
 }
+
+export const callCreateFile = (parentFolderId, name, file) => {
+  return dispatch => {
+    dispatch(FolderCreators.createFile(parentFolderId, name, file));
+
+    return Request.postForm(`folders/${parentFolderId}/files`, {name, file})
+      .then(data => FolderCreators.createFileSuccess(parentFolderId, data))
+      .catch(e => FolderCreators.createFileError(parentFolderId, e.toString()))
+  }
+}
