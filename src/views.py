@@ -9,12 +9,12 @@ from django.utils.decorators import method_decorator
 # Create your views here.
 
 def all_parents(folder):
-  list = []
+  list = [folder]
   parent = folder.parents
   print(parent.count())
   while parent.count() != 0:
     temp = parent.all()[0]
-    list.append(temp)
+    list.insert(0, temp)
     parent = temp.parents
   return list
 
@@ -37,7 +37,6 @@ class FolderDetail(APIView):
     parents = SubFolderSerializer(list, many=True)
     merged = serialized.data
     merged["tree"] = parents.data
-    print(test)
     return Response(merged)
 
   def delete(self, request, *args, **kwargs):
