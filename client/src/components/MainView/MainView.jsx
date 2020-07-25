@@ -5,13 +5,11 @@ import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
 
 import { getCurrentFolder } from '../../state/folder/folder.selectors';
-import { FolderCard, FileCard } from './Cards';
+import FolderContents from './FolderContents';
 import './MainView.scss';
 
 export default function MainView() {
   let folder = useSelector(getCurrentFolder());
-  let folders = (folder.folders || []);
-  let files = (folder.files || []);
 
   return (
     <div className="mainView">
@@ -32,22 +30,7 @@ export default function MainView() {
         <div className="divider"></div>
       </div>
       <div className="mainContent">
-        {/* <div className="label">Folders</div> */}
-        <div className="list folderList">
-          <div className="listScroll folderList">
-            {folders.map((fold) => {
-              return <FolderCard folder={fold} />
-            })}
-          </div>
-        </div>
-        {/* <div className="label">Files</div> */}
-        <div className="list fileList">
-          <div className="listScroll fileList">
-            {files.map((file) => {
-              return <FileCard file={file} />
-            })}
-          </div>
-        </div>
+        <FolderContents folder={folder} />
       </div>
     </div>
   )

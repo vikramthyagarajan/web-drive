@@ -36,8 +36,11 @@
   }
 
   .mainContent {
-    display: flex;
-    flex-direction: column;
+
+    .folderContents {
+      display: flex;
+      flex-direction: column;
+    }
 
     .label {
       font-size: 30px;
