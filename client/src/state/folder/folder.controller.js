@@ -80,3 +80,13 @@ export const callSearchAll = (query) => {
       .catch(e => dispatch(FolderCreators.searchAllError(query, e.toString())))
   }
 }
+
+export const callSearchFolder = (query) => {
+  return dispatch => {
+    dispatch(FolderCreators.searchAll(query));
+
+    return Request.get('search', {query, type: 'folder'})
+      .then(data => dispatch(FolderCreators.searchAllSuccess(query, data)))
+      .catch(e => dispatch(FolderCreators.searchAllError(query, e.toString())))
+  }
+}

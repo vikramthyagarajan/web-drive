@@ -9,7 +9,7 @@ import MoveIcon from '@material-ui/icons/Eject';
 
 import { callGetFolder, callDeleteFile, callDeleteFolder } from '../../state/folder/folder.controller';
 
-const Card = ({type, item, parentFolderId, children}) => {
+const Card = ({type, item, parentFolderId, showMoveDialog, children}) => {
   let dispatch = useDispatch();
 
   let handleClose = () => {
@@ -19,13 +19,17 @@ const Card = ({type, item, parentFolderId, children}) => {
       dispatch(callDeleteFolder(parentFolderId, item.id))
   }
 
+  let handleMoveClick = () => {
+    showMoveDialog(true);
+  }
+
   return (
     <div key={item.id} className={"card " + type }>
       {
         parentFolderId?
           <div className="cardActions">
             <div className="action">
-              <IconButton size="small" style={{color: 'inherit'}}>
+              <IconButton size="small" style={{color: 'inherit'}} onClick={handleMoveClick}>
                 <MoveIcon />
               </IconButton>
               <IconButton size="small" style={{color: 'inherit'}} onClick={handleClose}>
@@ -45,14 +49,14 @@ const Card = ({type, item, parentFolderId, children}) => {
 
 }
 
-export const FolderCard = ({folder, parentFolderId}) => {
+export const FolderCard = ({folder, parentFolderId, showMoveDialog}) => {
   let dispatch = useDispatch();
   const handleCardClick = () => {
     dispatch(callGetFolder(folder.id));
   }
 
   return (
-    <Card item={folder} parentFolderId={parentFolderId} type="folderCard">
+    <Card item={folder} parentFolderId={parentFolderId} type="folderCard" showMoveDialog={showMoveDialog}>
       <Link to={"/folders/" + folder.id} onClick={handleCardClick}>
         <div className="icon">
           <FolderIcon style={{fontSize: 'inherit', color: 'inherit'}} />
@@ -62,9 +66,9 @@ export const FolderCard = ({folder, parentFolderId}) => {
   )
 }
 
-export const FileCard = ({file, parentFolderId}) => {
+export const FileCard = ({file, parentFolderId, showMoveDialog}) => {
   return (
-    <Card item={file} parentFolderId={parentFolderId} type="fileCard">
+    <Card item={file} parentFolderId={parentFolderId} type="fileCard" showMoveDialog={showMoveDialog}>
       <div className="icon">
         <FileIcon style={{fontSize: 'inherit', color: 'inherit'}} />
       </div>

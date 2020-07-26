@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FolderCard, FileCard } from './Cards';
+import MoveDialog from './MoveDialog';
 
 
 export default function FolderContents({folder}) {
   let folders = (folder.folders || []);
   let files = (folder.files || []);
+  let [open, setOpen] = useState(false);
+
+  const showMoveDialog = (value) => {
+    setOpen(value);
+  }
 
   return (
     <div className="folderContents">
@@ -12,7 +18,7 @@ export default function FolderContents({folder}) {
       <div className="list folderList">
         <div className="listScroll folderList">
           {folders.map((fold) => {
-            return <FolderCard folder={fold} parentFolderId={folder.id} />
+            return <FolderCard folder={fold} parentFolderId={folder.id} showMoveDialog={showMoveDialog} />
           })}
         </div>
       </div>
@@ -20,10 +26,11 @@ export default function FolderContents({folder}) {
       <div className="list fileList">
         <div className="listScroll fileList">
           {files.map((file) => {
-            return <FileCard file={file} parentFolderId={folder.id} />
+            return <FileCard file={file} parentFolderId={folder.id} showMoveDialog={showMoveDialog} />
           })}
         </div>
       </div>
+      <MoveDialog open={open} showMoveDialog={showMoveDialog} />
     </div>
   )
 }
