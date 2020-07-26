@@ -21,16 +21,21 @@ const Card = ({type, item, parentFolderId, children}) => {
 
   return (
     <div key={item.id} className={"card " + type }>
-      <div className="cardActions">
-        <div className="action">
-          <IconButton size="small" style={{color: 'inherit'}}>
-            <MoveIcon />
-          </IconButton>
-          <IconButton size="small" style={{color: 'inherit'}} onClick={handleClose}>
-            <CloseIcon />
-          </IconButton>
-        </div>
-      </div>
+      {
+        parentFolderId?
+          <div className="cardActions">
+            <div className="action">
+              <IconButton size="small" style={{color: 'inherit'}}>
+                <MoveIcon />
+              </IconButton>
+              <IconButton size="small" style={{color: 'inherit'}} onClick={handleClose}>
+                <CloseIcon />
+              </IconButton>
+            </div>
+          </div>
+          : null
+
+      }
       {children}
       <div className="cardFooter">
         <div className="cardName">{item.name}</div>

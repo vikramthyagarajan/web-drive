@@ -6,6 +6,10 @@ const defaultState = {
   folderId: null,
   folderView: 'list',
   folderData: {
+  },
+  searchData: {
+    files: [],
+    folders: [],
   }
 }
 
@@ -44,6 +48,9 @@ export default function FolderReducer(state = defaultState, action) {
       newState = cloneDeep(state);
       newState.folderData[fields[0]] = newState.folderData[fields[0]].filter(a => a.id !== action[fields[1]]);
       return newState;
+
+    case FolderActions.SEARCH_ALL_SUCCESS:
+      return {...state, searchData: {files: action.data.files ||[], folders: action.data.folders || []}};
 
     default:
       return state;

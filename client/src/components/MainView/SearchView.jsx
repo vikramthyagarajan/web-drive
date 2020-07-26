@@ -5,7 +5,8 @@ import TextField from '@material-ui/core/TextField';
 // import AddIcon from '@material-ui/icons/Add';
 // import SearchIcon from '@material-ui/icons/Search';
 
-import { getCurrentFolder, getFolderView, getHistory } from '../../state/folder/folder.selectors';
+import { getCurrentFolder, getFolderView, getSearchData } from '../../state/folder/folder.selectors';
+import { callSearchAll } from '../../state/folder/folder.controller';
 import { FolderCreators } from '../../state/folder/folder.actions';
 import FolderContents from './FolderContents';
 import './MainView.scss';
@@ -25,6 +26,7 @@ const debounce = (fn, delay) => {
 
 export default function MainView() {
   let folder = useSelector(getCurrentFolder());
+  let searchData = useSelector(getSearchData());
   let folderView = useSelector(getFolderView());
   let dispatch = useDispatch();
 
@@ -34,6 +36,7 @@ export default function MainView() {
   useEffect(() => {
     console.log("Search:", searchFor);
     // Debounced search is here
+    dispatch(callSearchAll(searchFor));
   }, [searchFor]);
 
 
@@ -67,7 +70,7 @@ export default function MainView() {
         </div>
       </div>
       <div className="mainContent">
-        <FolderContents folder={folder} />
+        <FolderContents folder={searchData} />
       </div>
     </div>
   )

@@ -22,6 +22,9 @@ export const FolderActions = {
   DELETE_FILE_SUCCESS: 'DELETE_FILE_SUCCESS',
   DELETE_FILE_ERROR: 'DELETE_FILE_ERROR',
 
+  SEARCH_ALL: 'SEARCH_ALL',
+  SEARCH_ALL_SUCCESS: 'SEARCH_ALL_SUCCESS',
+  SEARCH_ALL_ERROR: 'SEARCH_ALL_ERROR',
 }
 
 export const FolderCreators = {
@@ -44,6 +47,10 @@ export const FolderCreators = {
   deleteFile: (parentFolderId, fileId) => ({type: FolderActions.DELETE_FILE, parentFolderId, fileId}),
   deleteFileSuccess: (parentFolderId, fileId) => ({type: FolderActions.DELETE_FILE_SUCCESS, parentFolderId, fileId}),
   deleteFileError: (parentFolderId, fileId, error) => ({type: FolderActions.DELETE_FILE_ERROR, parentFolderId, fileId, error}),
+
+  searchAll: (query) => ({type: FolderActions.SEARCH_ALL, query}),
+  searchAllSuccess: (query, data) => ({type: FolderActions.SEARCH_ALL_SUCCESS, query, data}),
+  searchAllError: (query, error) => ({type: FolderActions.SEARCH_ALL_ERROR, query, error}),
 
   setFolderView: (folderView) => ({type: FolderActions.SET_FOLDER_VIEW, folderView}),
 }

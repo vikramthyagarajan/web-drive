@@ -6,6 +6,12 @@ export const getCurrentFolder = () => {
   }
 }
 
+export const getSearchData = () => {
+  return state => {
+    return state.folder.searchData || {};
+  }
+}
+
 export const getFolderView = () => {
   return (state) => {
     return state.folder.folderView || '';

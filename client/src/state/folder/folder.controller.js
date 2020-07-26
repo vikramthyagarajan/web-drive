@@ -70,3 +70,13 @@ export const callDeleteFile = (parentFolderId, folderId) => {
       .catch(e => dispatch(FolderCreators.deleteFileError(parentFolderId, folderId, e.toString())))
   }
 }
+
+export const callSearchAll = (query) => {
+  return dispatch => {
+    dispatch(FolderCreators.searchAll(query));
+
+    return Request.get('search', {query})
+      .then(data => dispatch(FolderCreators.searchAllSuccess(query, data)))
+      .catch(e => dispatch(FolderCreators.searchAllError(query, e.toString())))
+  }
+}
