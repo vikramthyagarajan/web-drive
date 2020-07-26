@@ -31,6 +31,30 @@ export const callGetUserAndFolder = () => {
   }
 }
 
+export const fetchFolderIfRequired = (location) => {
+  return (dispatch, getState) => {
+    let state = getState();
+    let user = state.user || {};
+    let folderData = state.folder.folderData || {};
+    let path = location.pathname || '';
+    // ignore non folder routes
+    if (!path.startsWith("/folders") && path !== '/') {
+      return;
+    }
+    let split = path.split("/");
+    let currentRouteFolderId = folderData.id;
+    // if link starts with folders then load that as parent
+    if (split[1] === 'folders') {
+      let id = split[2];
+      currentRouteFolderId = id;
+    }
+
+    if (user.id && folderData.id && folderData.id !== currentRouteFolderId) {
+      return dispatch(callGetFolder(currentRouteFolderId));
+    }
+  }
+}
+
 export const callCreateFolder = (parentFolderId, name) => {
   return dispatch => {
     dispatch(FolderCreators.createFolder(parentFolderId, name));
