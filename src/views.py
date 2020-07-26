@@ -95,4 +95,22 @@ class MoveFolder(APIView):
   pass
 
 class Search(APIView):
-  pass
+  def get(self, request, *args, **kwargs):
+    params = request.GET
+    search_type = params.get('type')
+    search_query = params.get('query')
+    folders = []
+    files = []
+    if search_type == "folder":
+      fold_raw = Folder.objects.filter(name__icontains=search_query)
+      fold_ser = SubFolderSerializer(fold_raw, many=True)
+      folders = fold_ser.data
+    else:
+      fold_raw = Folder.objects.filter(name__icontains=search_query)
+      fold_ser = SubFolderSerializer(fold_raw, many=True)
+      folders = fold_ser.data
+      file_raw = File.objects.filter(name__icontains=search_query)
+      file_ser = FileSerializer(file_raw, many=True)
+      files = file_ser.data
+
+    return Response({"folders": folders, "files": files})

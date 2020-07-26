@@ -31,5 +31,6 @@ urlpatterns = [
     path('api/folders/<int:folder_id>/folders/', views.CreateFolder.as_view()),
     path('api/folders/<int:folder_id>/files/', views.CreateFile.as_view()),
     path('api/files/<int:file_id>/', views.FileDetail.as_view()),
+    path('api/search/', views.Search.as_view()),
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

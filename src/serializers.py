@@ -14,7 +14,7 @@ class FileSerializer(serializers.ModelSerializer):
 class SubFolderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Folder
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'parents']
 
 class FolderSerializer(serializers.ModelSerializer):
     files = FileSerializer(many=True, read_only=True)
