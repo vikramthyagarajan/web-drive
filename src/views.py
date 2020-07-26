@@ -43,8 +43,7 @@ class FolderDetail(APIView):
     folder_id = kwargs["folder_id"]
     folder = Folder.objects.get(id = folder_id)
     folder.delete()
-    serialized = FolderSerializer(folder)
-    return Response(serialized.data)
+    return Response({})
 
 
 @method_decorator(csrf_exempt, name='dispatch')
