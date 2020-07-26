@@ -13,7 +13,7 @@ const Card = ({type, item, parentFolderId, children}) => {
   let dispatch = useDispatch();
 
   let handleClose = () => {
-    if (type === 'file')
+    if (type === 'fileCard')
       dispatch(callDeleteFile(parentFolderId, item.id));
     else
       dispatch(callDeleteFolder(parentFolderId, item.id))

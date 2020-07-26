@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
 class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
-        fields = ['name', 'size', 'document']
+        fields = ['id', 'name', 'size', 'document']
 
 class SubFolderSerializer(serializers.ModelSerializer):
     class Meta:

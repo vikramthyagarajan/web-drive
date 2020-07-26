@@ -45,6 +45,13 @@ class FolderDetail(APIView):
     folder.delete()
     return Response({})
 
+class FileDetail(APIView):
+  def delete(self, request, *args, **kwargs):
+    file_id = kwargs["file_id"]
+    file = File.objects.get(id = file_id)
+    file.delete()
+    return Response({})
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CreateFolder(APIView):
@@ -62,7 +69,6 @@ class CreateFolder(APIView):
     parent.folders.add(folder)
     serialized = FolderSerializer(folder)
     return Response(serialized.data)
-    # return Response({"test": 1})
 
 
 class CreateFile(APIView):

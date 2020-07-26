@@ -65,7 +65,7 @@ export const callDeleteFile = (parentFolderId, folderId) => {
   return dispatch => {
     dispatch(FolderCreators.deleteFile(parentFolderId, folderId));
 
-    return Request.delete(`folders/${parentFolderId}/files/${folderId}`)
+    return Request.delete(`files/${folderId}`)
       .then(data => dispatch(FolderCreators.deleteFileSuccess(parentFolderId, folderId)))
       .catch(e => dispatch(FolderCreators.deleteFileError(parentFolderId, folderId, e.toString())))
   }
