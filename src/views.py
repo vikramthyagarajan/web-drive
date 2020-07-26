@@ -82,7 +82,6 @@ class CreateFile(APIView):
     ext = doc.name.split(".")[1]
     print(doc.name)
     print(doc.size)
-    print(link)
     parent = Folder.objects.get(id = folder_id)
     file = File(name=name, document=doc, size=doc.size, extension=ext, doc_name=doc.name)
     file.parent = parent
