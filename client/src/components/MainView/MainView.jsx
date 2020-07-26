@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
@@ -30,9 +31,11 @@ export default function MainView() {
             </IconButton>
           </div>
           <div className={"action search " + (folderView === 'list'? 'show': '')}>
-            <IconButton style={{background: '#1B53BD', color: 'inherit'}}>
-              <SearchIcon />
-            </IconButton>
+            <Link to="/search" style={{color: 'inherit'}}>
+              <IconButton style={{background: '#1B53BD', color: 'inherit'}}>
+                  <SearchIcon />
+              </IconButton>
+            </Link>
           </div>
         </div>
         <div className="divider"></div>
