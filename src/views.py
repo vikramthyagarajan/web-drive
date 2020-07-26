@@ -92,7 +92,30 @@ class CreateFile(APIView):
     return Response(serialized.data)
 
 class MoveFolder(APIView):
-  pass
+  authentication_classes=[]
+
+  def post(self, request, *args, **kwargs):
+    from_folder = request.data.get('fromFolder')
+    to_folder = request.data.get('toFolder')
+    move_type = request.data.get('type')
+    id = request.data.get('id')
+    old_parent = Folder.objects.get(id=from_folder)
+    new_parent = Folder.objects.get(id=to_folder)
+    item_ser = {}
+    if move_type == "folder":
+      item = Folder.objects.get(id=id)
+      old_parent.folders.remove(item)
+      new_parent.folders.add(item)
+      item_ser = FolderSerializer(item).data
+    else:
+      item = File.objects.get(id=id)
+      item.parent = new_parent
+      item.save()
+      item_ser = FileSerializer(item).data
+    
+    par_ser = FolderSerializer(old_parent).data
+    new_ser = FolderSerializer(new_parent).data
+    return Response({"from": par_ser, "to": new_ser, "item": item_ser})
 
 class Search(APIView):
   def get(self, request, *args, **kwargs):
