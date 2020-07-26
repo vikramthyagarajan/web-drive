@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
@@ -28,7 +29,7 @@ export default function() {
           <Route path="/search">
             <SearchView />
           </Route>
-          <Route>
+          <Route exact path="/">
             <MainView />
           </Route>
         </Switch>
