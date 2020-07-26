@@ -13,8 +13,6 @@ import useDebounce from '../../config/debouncer';
 import { getSearchData } from '../../state/folder/folder.selectors';
 import { callSearchFolder, callMoveFileOrFolder } from '../../state/folder/folder.controller';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-
 export default function MoveDialog(props) {
   let [search, searchFor, onChange, onEnter] = useDebounce();
   let searchData = useSelector(getSearchData());
@@ -22,7 +20,6 @@ export default function MoveDialog(props) {
   let dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("Search:", searchFor);
     // Debounced search is here
     dispatch(callSearchFolder(searchFor));
   }, [searchFor]);

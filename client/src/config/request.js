@@ -34,7 +34,6 @@ export default class Request {
       qstring = qstring.slice(0, qstring.length - 1);
     if(qstring != '')
       path = path + '?' + qstring;
-    console.log('q', query, qstring);
 
     return _fetch(path, args);
   }

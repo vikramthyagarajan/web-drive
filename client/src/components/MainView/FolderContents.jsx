@@ -18,7 +18,7 @@ export default function FolderContents({folder}) {
       <div className="list folderList">
         <div className="listScroll folderList">
           {folders.map((fold) => {
-            return <FolderCard folder={fold} parentFolderId={folder.id} showMoveDialog={showMoveDialog} />
+            return <FolderCard key={fold.id} folder={fold} parentFolderId={folder.id} showMoveDialog={showMoveDialog} />
           })}
         </div>
       </div>
@@ -26,7 +26,7 @@ export default function FolderContents({folder}) {
       <div className="list fileList">
         <div className="listScroll fileList">
           {files.map((file) => {
-            return <FileCard file={file} parentFolderId={folder.id} showMoveDialog={showMoveDialog} />
+            return <FileCard key={file.id} file={file} parentFolderId={folder.id} showMoveDialog={showMoveDialog} />
           })}
         </div>
       </div>

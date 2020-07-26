@@ -20,7 +20,7 @@ export default function Sidebar() {
           {
             tree.map((parent) => {
               return (
-                <Link className="sidebarLink" to={"/folders/" + parent.id}>
+                <Link key={parent.id} className="sidebarLink" to={"/folders/" + parent.id}>
                   <div className={"listItem " + (folder.id === parent.id? "current": "")}>{parent.name}</div>
                 </Link>
               )
