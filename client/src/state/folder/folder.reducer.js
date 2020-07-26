@@ -24,7 +24,7 @@ export default function FolderReducer(state = defaultState, action) {
       return {...state, folderId: action.folderId, folderData: action.folder};
 
     case FolderActions.CREATE_FOLDER_SUCCESS:
-      if(state.folderId !== action.parentFolderId)
+      if(state.folderData.id !== action.parentFolderId)
         return state;
 
       newState = cloneDeep(state);
@@ -33,7 +33,7 @@ export default function FolderReducer(state = defaultState, action) {
       return newState;
 
     case FolderActions.CREATE_FILE_SUCCESS:
-      if(state.folderId !== action.parentFolderId)
+      if(state.folderData.id !== action.parentFolderId)
         return state;
 
       newState = cloneDeep(state);

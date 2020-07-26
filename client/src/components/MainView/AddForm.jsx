@@ -30,6 +30,7 @@ export default function AddForm({folder}) {
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   }
+  let isDisabled = type === 'file' && !file;
 
   return (
     <div className="addForm">
@@ -78,7 +79,7 @@ export default function AddForm({folder}) {
                 </Button>
               ) : null
           }
-          <Button variant="contained" className="submit" onClick={onSubmit}>Submit</Button>
+          <Button variant="contained" disabled={isDisabled} className="submit" onClick={onSubmit}>Submit</Button>
         </form>
       </div>
     </div>
