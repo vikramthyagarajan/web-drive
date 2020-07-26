@@ -57,6 +57,17 @@ export default class Request {
     return _fetch(path, args);
   }
 
+  static post(path, data) {
+    if(path[path.length - 1] !== "/")
+      path += "/"
+    let args = cloneDeep(getDefaultArgs());
+    args.method = 'POST';
+
+    args.body = JSON.stringify(data);
+
+    return _fetch(path, args);
+  }
+
   static delete(path) {
     if(path[path.length - 1] !== "/")
       path += "/"

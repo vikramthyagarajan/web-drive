@@ -25,6 +25,16 @@ export const FolderActions = {
   SEARCH_ALL: 'SEARCH_ALL',
   SEARCH_ALL_SUCCESS: 'SEARCH_ALL_SUCCESS',
   SEARCH_ALL_ERROR: 'SEARCH_ALL_ERROR',
+
+  MOVE_FILE: 'MOVE_FILE',
+  MOVE_FILE_SUCCESS: 'MOVE_FILE_SUCCESS',
+  MOVE_FILE_ERROR: 'SEARCH_FILE_ERROR',
+
+  MOVE_FOLDER: 'MOVE_FOLDER',
+  MOVE_FOLDER_SUCCESS: 'MOVE_FOLDER_SUCCESS',
+  MOVE_FOLDER_ERROR: 'SEARCH_FOLDER_ERROR',
+
+  SET_MOVE_ID: 'SET_MOVE_ID',
 }
 
 export const FolderCreators = {
@@ -51,6 +61,16 @@ export const FolderCreators = {
   searchAll: (query) => ({type: FolderActions.SEARCH_ALL, query}),
   searchAllSuccess: (query, data) => ({type: FolderActions.SEARCH_ALL_SUCCESS, query, data}),
   searchAllError: (query, error) => ({type: FolderActions.SEARCH_ALL_ERROR, query, error}),
+
+  moveFile: (fileId, parentFolderId, folderId) => ({type: FolderActions.MOVE_FILE, fileId, parentFolderId, folderId}),
+  moveFileSuccess: (fileId, from, to, item) => ({type: FolderActions.MOVE_FILE_SUCCESS, fileId, from, to, item}),
+  moveFileError: (fileId, parentFolderId, folderId, error) => ({type: FolderActions.MOVE_FILE_ERROR, fileId, parentFolderId, folderId, error}),
+
+  moveFolder: (id, parentFolderId, folderId) => ({type: FolderActions.MOVE_FOLDER, id, parentFolderId, folderId}),
+  moveFolderSuccess: (id, from, to, item) => ({type: FolderActions.MOVE_FOLDER_SUCCESS, id, from, to, item}),
+  moveFolderError: (id, parentFolderId, folderId, error) => ({type: FolderActions.MOVE_FOLDER_ERROR, id, parentFolderId, folderId, error}),
+
+  setMoveId: (id, moveType, parentFolderId) => ({type: FolderActions.SET_MOVE_ID, id, moveType, parentFolderId}),
 
   setFolderView: (folderView) => ({type: FolderActions.SET_FOLDER_VIEW, folderView}),
 }

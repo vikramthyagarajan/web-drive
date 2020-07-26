@@ -7,6 +7,10 @@ const defaultState = {
   folderView: 'list',
   folderData: {
   },
+  move: {
+    id: null,
+    type: ''
+  },
   searchData: {
     files: [],
     folders: [],
@@ -51,6 +55,16 @@ export default function FolderReducer(state = defaultState, action) {
 
     case FolderActions.SEARCH_ALL_SUCCESS:
       return {...state, searchData: {files: action.data.files ||[], folders: action.data.folders || []}};
+
+    case FolderActions.MOVE_FOLDER_SUCCESS:
+    case FolderActions.MOVE_FILE_SUCCESS:
+      newState = cloneDeep(state);
+      newState.folderData.folders = action.from.folders;
+      newState.folderData.files = action.from.files;
+      return newState;
+
+    case FolderActions.SET_MOVE_ID:
+      return {...state, move: {id: action.id, type: action.moveType, parentFolderId: action.parentFolderId}};
 
     default:
       return state;

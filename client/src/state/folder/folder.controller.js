@@ -90,3 +90,37 @@ export const callSearchFolder = (query) => {
       .catch(e => dispatch(FolderCreators.searchAllError(query, e.toString())))
   }
 }
+
+export const callMoveFile = (fileId, parentFolderId, folderId) => {
+  return dispatch => {
+    dispatch(FolderCreators.moveFile(fileId, parentFolderId, folderId));
+
+    return Request.post('move', {id: fileId, fromFolder: parentFolderId, toFolder: folderId, type: 'file'})
+      .then(data => dispatch(FolderCreators.moveFileSuccess(fileId, data.from, data.to, data.item)))
+      .catch(e => dispatch(FolderCreators.moveFileError(fileId, parentFolderId, folderId, e.toString())))
+  }
+}
+
+export const callMoveFolder = (id, parentFolderId, folderId) => {
+  return dispatch => {
+    dispatch(FolderCreators.moveFolder(id, parentFolderId, folderId));
+
+    return Request.post('move', {id: id, fromFolder: parentFolderId, toFolder: folderId, type: 'folder'})
+      .then(data => dispatch(FolderCreators.moveFolderSuccess(id, data.from, data.to, data.item)))
+      .catch(e => dispatch(FolderCreators.moveFolderError(id, parentFolderId, folderId, e.toString())))
+  }
+}
+
+export const callMoveFileOrFolder = (toFolderId) => {
+  return (dispatch, getState) => {
+    let state = getState();
+    let {id, type, parentFolderId} = state.folder.move || {};
+
+    if (type === 'file') {
+      return dispatch(callMoveFile(id, parentFolderId, toFolderId));
+    }
+    else if(type === 'folder') {
+      return dispatch(callMoveFolder(id, parentFolderId, toFolderId));
+    }
+  }
+}

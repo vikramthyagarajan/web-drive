@@ -7,6 +7,7 @@ import FileIcon from '@material-ui/icons/Description';
 import CloseIcon from '@material-ui/icons/Close';
 import MoveIcon from '@material-ui/icons/Eject';
 
+import { FolderCreators } from '../../state/folder/folder.actions';
 import { callGetFolder, callDeleteFile, callDeleteFolder } from '../../state/folder/folder.controller';
 
 const Card = ({type, item, parentFolderId, showMoveDialog, children}) => {
@@ -21,6 +22,7 @@ const Card = ({type, item, parentFolderId, showMoveDialog, children}) => {
 
   let handleMoveClick = () => {
     showMoveDialog(true);
+    dispatch(FolderCreators.setMoveId(item.id, type === 'fileCard'? 'file': 'folder', parentFolderId));
   }
 
   return (

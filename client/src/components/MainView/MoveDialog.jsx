@@ -11,7 +11,7 @@ import Dialog from '@material-ui/core/Dialog';
 
 import useDebounce from '../../config/debouncer';
 import { getSearchData } from '../../state/folder/folder.selectors';
-import { callSearchFolder } from '../../state/folder/folder.controller';
+import { callSearchFolder, callMoveFileOrFolder } from '../../state/folder/folder.controller';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
@@ -35,6 +35,7 @@ export default function MoveDialog(props) {
 
   const handleListItemClick = (folder) => {
     showMoveDialog(false);
+    dispatch(callMoveFileOrFolder(folder.id))
   };
 
   return (
