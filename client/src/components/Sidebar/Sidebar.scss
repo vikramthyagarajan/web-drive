@@ -28,18 +28,19 @@
   .folderStructure {
     margin-top: 35px;
     .list {
+      .sidebarLink {
+        color: inherit;
+        text-decoration: none;
+      }
+
       .listItem {
         color: $white;
         font-size: 20px;
         padding: 10px 0;
-        margin-left: 10px;
+        margin-left: 0px;
 
         &.current {
           color: $primaryLight;
-        }
-
-        &:first-child {
-          margin-left: 0;
         }
       }
     }

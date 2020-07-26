@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { getCurrentFolder } from '../../state/folder/folder.selectors';
@@ -18,7 +19,11 @@ export default function Sidebar() {
         <div className="list">
           {
             tree.map((parent) => {
-              return (<div className={"listItem " + (folder.id === parent.id? "current": "")}>{parent.name}</div>)
+              return (
+                <Link className="sidebarLink" to={"/folders/" + parent.id}>
+                  <div className={"listItem " + (folder.id === parent.id? "current": "")}>{parent.name}</div>
+                </Link>
+              )
             })
           }
 
