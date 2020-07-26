@@ -8,7 +8,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
 develop-eggs/
 dist/
 downloads/
@@ -150,7 +149,6 @@ cython_debug/
 /coverage
 
 # production
-/build
 /server/uploads/files/**
 
 # misc
