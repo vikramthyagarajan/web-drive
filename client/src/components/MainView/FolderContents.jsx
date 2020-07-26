@@ -12,7 +12,7 @@ export default function FolderContents({folder}) {
       <div className="list folderList">
         <div className="listScroll folderList">
           {folders.map((fold) => {
-            return <FolderCard folder={fold} />
+            return <FolderCard folder={fold} parentFolderId={folder.id} />
           })}
         </div>
       </div>
@@ -20,7 +20,7 @@ export default function FolderContents({folder}) {
       <div className="list fileList">
         <div className="listScroll fileList">
           {files.map((file) => {
-            return <FileCard file={file} />
+            return <FileCard file={file} parentFolderId={folder.id} />
           })}
         </div>
       </div>

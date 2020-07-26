@@ -45,4 +45,10 @@ export default class Request {
 
     return _fetch(path, args);
   }
+
+  static delete(path) {
+    let args = merge({}, getDefaultArgs(), { method: 'DELETE' });
+
+    return _fetch(path, args);
+  }
 }

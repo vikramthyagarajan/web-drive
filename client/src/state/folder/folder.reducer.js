@@ -20,6 +20,7 @@ export default function FolderReducer(state = defaultState, action) {
         return state;
 
       newState = cloneDeep(state);
+      newState.folderView = 'list';
       newState.folderData.folders.push(action.folder);
       return newState;
 
@@ -28,12 +29,20 @@ export default function FolderReducer(state = defaultState, action) {
         return state;
 
       newState = cloneDeep(state);
+      newState.folderView = 'list';
       newState.folderData.files.push(action.file);
       return newState;
     
     case FolderActions.SET_FOLDER_VIEW:
       newState = cloneDeep(state);
       newState.folderView = action.folderView;
+      return newState;
+
+    case FolderActions.DELETE_FILE_SUCCESS:
+    case FolderActions.DELETE_FOLDER_SUCCESS:
+      let fields = action.hasOwnProperty('folderId')? ['folders', 'folderId']: ['files', 'fileId'];
+      newState = cloneDeep(state);
+      newState.folderData[fields[0]] = newState.folderData[fields[0]].filter(a => a.id !== action[fields[1]]);
       return newState;
 
     default:

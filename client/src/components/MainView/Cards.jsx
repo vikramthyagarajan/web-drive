@@ -7,9 +7,18 @@ import FileIcon from '@material-ui/icons/Description';
 import CloseIcon from '@material-ui/icons/Close';
 import MoveIcon from '@material-ui/icons/Eject';
 
-import { callGetFolder } from '../../state/folder/folder.controller';
+import { callGetFolder, callDeleteFile, callDeleteFolder } from '../../state/folder/folder.controller';
 
-const Card = ({type, item, children}) => {
+const Card = ({type, item, parentFolderId, children}) => {
+  let dispatch = useDispatch();
+
+  let handleClose = () => {
+    if (type === 'file')
+      dispatch(callDeleteFile(parentFolderId, item.id));
+    else
+      dispatch(callDeleteFolder(parentFolderId, item.id))
+  }
+
   return (
     <div key={item.id} className={"card " + type }>
       <div className="cardActions">
@@ -17,7 +26,7 @@ const Card = ({type, item, children}) => {
           <IconButton size="small" style={{color: 'inherit'}}>
             <MoveIcon />
           </IconButton>
-          <IconButton size="small" style={{color: 'inherit'}}>
+          <IconButton size="small" style={{color: 'inherit'}} onClick={handleClose}>
             <CloseIcon />
           </IconButton>
         </div>
@@ -31,14 +40,14 @@ const Card = ({type, item, children}) => {
 
 }
 
-export const FolderCard = ({folder}) => {
+export const FolderCard = ({folder, parentFolderId}) => {
   let dispatch = useDispatch();
   const handleCardClick = () => {
     dispatch(callGetFolder(folder.id));
   }
 
   return (
-    <Card item={folder} type="folderCard">
+    <Card item={folder} parentFolderId={parentFolderId} type="folderCard">
       <Link to={"/folders/" + folder.id} onClick={handleCardClick}>
         <div className="icon">
           <FolderIcon style={{fontSize: 'inherit', color: 'inherit'}} />
@@ -48,9 +57,9 @@ export const FolderCard = ({folder}) => {
   )
 }
 
-export const FileCard = ({file}) => {
+export const FileCard = ({file, parentFolderId}) => {
   return (
-    <Card item={file} type="fileCard">
+    <Card item={file} parentFolderId={parentFolderId} type="fileCard">
       <div className="icon">
         <FileIcon style={{fontSize: 'inherit', color: 'inherit'}} />
       </div>
