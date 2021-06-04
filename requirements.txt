@@ -1,6 +1,6 @@
 asgiref==3.2.10
 astroid==2.4.2
-Django==3.0.8
+Django==3.1.9
 django-common-helpers==0.9.2
 django-cors-headers==3.4.0
 django-cron==0.5.1
